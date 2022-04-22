@@ -1,0 +1,41 @@
+
+{% include 'header.html' %}
+<br/>
+<a href="{{url_for('create')}}" class="btn btn-success">
+
+    Ingresa nuevo Articulo
+
+</a>
+<br>
+<br>
+
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Foto</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for articulo in articulos %}
+            <tr>
+                <td>{{articulo[0]}}</td>
+
+                <td>{{articulo[1]}}</td>
+                <td>{{articulo[2]}}</td>
+                <td>
+                    <img class= "img-thumbnail" width="100" src="uploads/{{articulo[3]}}" alt="">
+                    
+                </td>
+
+                <td><a class="btn btn-warning" href="/edit/{{articulo[0]}}">Editar</a> |
+                    <a onclick="return confirm('Desea borrar el articulo?')" class="btn btn-danger" href="/destroy/{{articulo[0]}}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% include 'footer.html' %}
